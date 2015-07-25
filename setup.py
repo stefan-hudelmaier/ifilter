@@ -8,13 +8,13 @@ long_description = ""
 
 setup(
     name='ifilter',
-    version="0.1",
+    version="0.2",
     description='ifilter is a command line tool for interactive filtering of pipes.',
     long_description=long_description,
     author='Stefan Hudelmaier',
     author_email='hudelmaier@gmail.com',
     url='https://github.com/stefan-hudelmaier/ifilter',
-    download_url='https://github.com/stefan-hudelmaier/ifilter/tarball/0.1',
+    download_url='https://github.com/stefan-hudelmaier/ifilter/tarball/0.2',
     keywords=["shell", "pipe", "filter", "interactive"],
     packages=find_packages(),
     install_requires=[],
