@@ -29,9 +29,8 @@ def get_editor():
 
 
 def main():
-
     try:
-        
+
         parser = argparse.ArgumentParser(
             prog='ifilter',
             formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -55,7 +54,7 @@ def main():
             for line in f.readlines():
                 if not line.startswith("#"):
                     print line,
-    finally:                                                    
+    finally:
         if f is not None:
             os.remove(f.name)
 
