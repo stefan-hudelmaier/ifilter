@@ -1,13 +1,12 @@
 # ifilter
 Command line tool for interactively filtering lines in a pipe
 
-## Quick start
+## Installation
 
-    git clone https://github.com/stefan-hudelmaier/ifilter.git
-    sudo setup.py install
+    sudo pip install ifilter
 
 ## Example
 
 Delete selected files in a directory
 
-    find . | ifilter | xargs rm
+    find . -type f | ifilter | xargs rm
