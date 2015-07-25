@@ -29,31 +29,35 @@ def get_editor():
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        prog='ifilter',
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        description=description)
 
-    # Currently args are unused
-    args = parser.parse_args()
+    try:
+        
+        parser = argparse.ArgumentParser(
+            prog='ifilter',
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            description=description)
 
-    s = sys.stdin.read()
+        # Currently args are unused
+        args = parser.parse_args()
 
-    f = tempfile.NamedTemporaryFile(delete=False)
-    f.write(guide)
-    f.write(s)
-    f.close()
+        s = sys.stdin.read()
 
-    editor = get_editor()
+        f = tempfile.NamedTemporaryFile(delete=False)
+        f.write(guide)
+        f.write(s)
+        f.close()
 
-    call("</dev/tty >/dev/tty %s %s " % (editor, f.name), shell=True)
+        editor = get_editor()
 
-    with open(f.name, "r") as f:
-        for line in f.readlines():
-            if not line.startswith("#"):
-                print line,
+        call("</dev/tty >/dev/tty %s %s " % (editor, f.name), shell=True)
 
-    os.remove(f.name)
+        with open(f.name, "r") as f:
+            for line in f.readlines():
+                if not line.startswith("#"):
+                    print line,
+    finally:                                                    
+        if f is not None:
+            os.remove(f.name)
 
 
 if __name__ == "__main__":
