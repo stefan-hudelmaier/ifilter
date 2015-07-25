@@ -14,8 +14,10 @@ setup(
     author='Stefan Hudelmaier',
     author_email='hudelmaier@gmail.com',
     url='https://github.com/stefan-hudelmaier/ifilter',
+    download_url='https://github.com/stefan-hudelmaier/ifilter/tarball/0.1',
+    keywords=["shell", "pipe", "filter", "interactive"],
     packages=find_packages(),
-    install_requires=["docopt"],
+    install_requires=[],
     entry_points={
         'console_scripts': [
             'ifilter = ifilter:main',
@@ -26,7 +28,6 @@ setup(
           'Environment :: Console',
           'Intended Audience :: Developers',
           'Intended Audience :: System Administrators',
-          'Operating System :: MacOS :: MacOS X',
           'Operating System :: Unix',
           'Operating System :: POSIX',
           'Programming Language :: Python',
