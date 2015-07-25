@@ -11,11 +11,11 @@ it get's ignored.
 
 ## Examples
 
-Delete selected files in a directory
+Delete selected files in a directory:
 
     find . -type f | ifilter | xargs rm
 
-Update a version in specific files
+Update a version in specific files:
 
     ls *.xml | ifilter | xargs sed -i 's|1.0.0|1.1.0|'
 
