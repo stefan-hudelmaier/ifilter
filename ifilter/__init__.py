@@ -2,32 +2,63 @@ import sys
 import tempfile
 import os
 from subprocess import call
+import argparse
 
 # TODO:
 # Handle infinite input (/dev/null)
-# Use EDITOR env variable
-# Add setup.py
-# Use main method
 # Add docopt
-# Add documentation at top
+
+
+guide = """# Remove or modify lines.
+# Lines that are prefixed with the # character are filtered out.
+# When you are done, save the file and exit.
+"""
+
+description = \
+"""Interactively filter lines in a pipe.
+
+Example: Delete selected files in a directory
+
+    find . | ifilter | xargs rm
+"""
+
+def get_editor():
+
+    if "EDITOR" in os.environ:
+        return os.environ["EDITOR"]
+
+    if "VISUAL" in os.environ:
+        return os.environ["VISUAL"]
+
+    return "vi"
 
 def main():
 
-	s = sys.stdin.read()
+    parser = argparse.ArgumentParser(
+            prog='ifilter',
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            description=description)
 
-	f = tempfile.NamedTemporaryFile(delete=False)
-	f.write(s)
-	f.close()
+    # Currently args are unused
+    args = parser.parse_args()
 
-	call("</dev/tty >/dev/tty vi " + f.name, shell=True)
-	#call("</dev/tty >/dev/tty nano " + f.name, shell=True)
+    s = sys.stdin.read()
 
-	with open(f.name, "r") as f:
-		for line in f.readlines():
-			if not line.startswith("#"):
-				print line,
+    f = tempfile.NamedTemporaryFile(delete=False)
+    f.write(guide)
+    f.write(s)
+    f.close()
 
-	os.remove(f.name)
+    editor = get_editor()
+
+    call("</dev/tty >/dev/tty %s %s " % (editor, f.name), shell=True)
+
+    with open(f.name, "r") as f:
+      for line in f.readlines():
+        if not line.startswith("#"):
+          print line,
+
+    os.remove(f.name)
 
 if __name__ == "__main__":
-	main()
+    main()
