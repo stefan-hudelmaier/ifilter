@@ -14,3 +14,7 @@ Delete selected files in a directory
 Update a version in specific files
 
     ls *.xml | ifilter | xargs sed -i 's|1.0.0|1.1.0|'
+
+Creating a .gitignore file:
+
+    find . | ifilter > .gitignore
