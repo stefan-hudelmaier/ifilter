@@ -5,6 +5,8 @@ editor (it uses $EDITOR and $VISUAL and falls back to vi) and output
 it again, along with any modifications. If a line is prefixed with # 
 it get's ignored.
 
+![screencast](https://github.com/stefan-hudelmaier/ifilter/resources/screencast.gif)
+
 ## Installation
 
     sudo pip install ifilter
